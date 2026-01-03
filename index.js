@@ -4,33 +4,34 @@ import { AppError } from "./src/utils/appError.js";
 import { globalError } from "./src/middleware/globalError.js";
 import cors from "cors";
 import { dbConn } from "./database/dbConnection.js";
-
 import "dotenv/config";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// 1️⃣ Database connection
-dbConn;
-
-
-// 2️⃣ Middleware
+// Middleware
 app.use(cors());
-app.use('/uploads', express.static('uploads'));
+app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 
-// 3️⃣ Bootstrap routes
+// Routes
 bootstrap(app);
 
-// 4️⃣ Handle unhandled routes
+// Handle unhandled routes
 app.use((req, res, next) => {
   next(new AppError(`Route not found: ${req.originalUrl}`, 404));
 });
 
-// 5️⃣ Global error handler
+// Global error handler
 app.use(globalError);
 
-// 6️⃣ Start server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Serverless export
+export default async function handler(req, res) {
+  try {
+    await dbConn(); // اتصال قاعدة البيانات
+    app(req, res);
+  } catch (err) {
+    console.error("Serverless Function error:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+

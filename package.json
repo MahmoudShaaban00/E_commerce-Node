@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
- "scripts": {
-  "start": "node --env-file=.env index.js"
-},
+  "scripts": {
+    "start": "node --env-file=.env index.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@vercel/node": "^5.5.16",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",

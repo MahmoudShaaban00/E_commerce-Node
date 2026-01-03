@@ -1,6 +1,6 @@
 import { connect } from "mongoose";
 
-export const dbConn = connect("mongodb+srv://mahmoud:jfxT3fQfA85HrPZI@cluster0.yhtcrzf.mongodb.net/e-commerce")
+export const dbConn = connect("mongodb+srv://mahmoud:bqZBwdXEPPhCN5ve@cluster0.yhtcrzf.mongodb.net/e-commerce")
   .then(() => {
     console.log("Database connected successfully");
   })

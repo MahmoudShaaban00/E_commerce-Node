@@ -3,12 +3,15 @@ import { bootstrap } from "./src/modules/bootstrap.js";
 import { AppError } from "./src/utils/appError.js";
 import { globalError } from "./src/middleware/globalError.js";
 import cors from "cors";
+import { dbConn } from "./database/dbConnection.js";
 
 import "dotenv/config";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// 1️⃣ Database connection
+dbConn;
 
 
 // 2️⃣ Middleware

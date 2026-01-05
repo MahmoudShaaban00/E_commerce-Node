@@ -51,6 +51,10 @@ export const createCheckoutSession = catchError(async (req, res, next) => {
   const cart = await Cart.findById(req.params.id);
   if (!cart) return next(new AppError("Cart not found", 404));
 
+  if (!stripe) {
+  return next(new AppError("Stripe is not configured", 500));
+}
+
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     payment_method_types: ["card"],

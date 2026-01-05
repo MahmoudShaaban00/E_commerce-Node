@@ -5,7 +5,7 @@ let cachedDb = null;
 export const dbConn = async () => {
   if (cachedDb) return cachedDb;
 
-  const uri = process.env.MONGO_URI;
+  const uri = "mongodb+srv://mahmoud:n8odKL4gQoE2CShy@cluster0.yhtcrzf.mongodb.net/e-commerce";
 
   if (!uri) {
     throw new Error(
